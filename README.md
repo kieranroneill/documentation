@@ -6,3 +6,4 @@ A collection of documentation that I have accumulated over the years.
 
 * [Digital Ocean](/digital-ocean/README.md)
     * [Docker droplet](/digital-ocean/docker-droplet/README.md)
+    * [Matrix droplet](/digital-ocean/matrix-droplet/README.md)
