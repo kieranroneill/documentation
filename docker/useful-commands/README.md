@@ -9,7 +9,11 @@
 
 ## 1. General
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 2. Containers
+
+[&#8593; Back to the top](#table-of-contents)
 
 ## 3. Images
 
@@ -17,3 +21,5 @@
 ```shell script
 docker rmi -f $(docker images -f "dangling=true" -q)
 ```
+
+[&#8593; Back to the top](#table-of-contents)

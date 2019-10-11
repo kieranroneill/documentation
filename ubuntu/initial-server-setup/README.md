@@ -29,6 +29,8 @@ adduser ubuntu
 usermod -aG sudo ubuntu
 ```
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 2. Add SSH public key authentication 
 
 * On your **local machine**, generate an ssh key:
@@ -66,6 +68,8 @@ nano ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 3. Disable password authentication
 
 * As your new sudo user, open the SSH daemon configuration:
@@ -84,6 +88,8 @@ ChallengeResponseAuthentication no
 ```shell script
 sudo systemctl reload sshd
 ```
+
+[&#8593; Back to the top](#table-of-contents)
 
 ## 4. Setup basic firewall for SSH
 
@@ -111,6 +117,8 @@ To                         Action      From
 --                         ------      ----                 
 OpenSSH (v6)               ALLOW       Anywhere (v6)
 ```
+
+[&#8593; Back to the top](#table-of-contents)
 
 ## 5. Create `swapfile` (optional)
 
@@ -143,6 +151,8 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 * For more information, see [this](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04) guide.
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 6. Add Git deployment keys (optional)
 
 * Create a git ssh key:
@@ -162,6 +172,8 @@ cat ~/.ssh/id_rsa_github.pub >> ~/.ssh/authorized_keys
 
 * Login to Github, under **Settings**>**Deploy keys** add the copied public key and give it a meaningful title, e.g. `ubuntu@server_ip`.
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 7. Add CircleCI deployment keys (optional)
 
 * Create a deploy ssh key:
@@ -180,3 +192,5 @@ cat ~/.ssh/id_rsa_circleci.pub >> ~/.ssh/authorized_keys
 ```
 
 * Login to CircleCI, under **Project settings**>**SSH Permissions** and add a new key, copying the private key from earlier. Use the server IP address as the host.
+
+[&#8593; Back to the top](#table-of-contents)

@@ -57,6 +57,8 @@ Nginx Full (v6)            ALLOW       Anywhere (v6)
 
 For more information, see [this](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04) guide.
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 2. Enable TLS through Let's Encrypt
 
 Matrix Synapse now requires TLS enabled by default to allow the server to be used to securely. The easiest way to configure TLS is to obtain SSL certificates from a trusted Certificate Authority such as Let’s Encrypt.
@@ -123,6 +125,8 @@ sudo crontab -e
 
 * Let’s Encrypt recommends setting the automated renewal script to run twice a day on a random minute within the hour. The above example runs on 02:01 and 14:01 but you can select any time slot you wish.
 
+[&#8593; Back to the top](#table-of-contents)
+
 ## 3. Nginx reverse proxy setup
 
 #### 1. Install Nginx
@@ -185,6 +189,8 @@ server {
 sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
+
+[&#8593; Back to the top](#table-of-contents)
 
 ## 4. Setup Matrix-Synapse
 
@@ -260,6 +266,8 @@ register_new_matrix_user -c /etc/matrix-synapse/homeserver.yaml https://127.0.0.
 ```
 
 * You will be prompted to choose a username and a password. You’ll also be asked to make the user an administrator, say `yes`.
+
+[&#8593; Back to the top](#table-of-contents)
 
 #### 4. Securing Federation with SSL
 
