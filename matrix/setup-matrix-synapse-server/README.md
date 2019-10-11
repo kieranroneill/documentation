@@ -1,12 +1,9 @@
-# Matrix droplet setup
+# Setup Matrix-Synapse server
 
 #### Table of contents
 
 * [1. Basic server setup](#1-basic-server-setup)
-    * [1. Create new user](#1-create-new-user)
-    * [2. Add SSH public key authentication](#2-add-ssh-public-key-authentication)
-    * [3. Disable password authentication](#3-disable-password-authentication)
-    * [4. Setup basic firewall for SSH](#4-setup-basic-firewall-for-ssh)
+    * [1. Configure firewall](#1-configure-firewall)
 * [2. Enable TLS through Let's Encrypt](#2-enable-tls-through-lets-encrypt)
     * [1. Install Certbot and dependencies](#1-install-certbot-and-dependencies)
     * [2. Get certificates](#2-get-certificates)
@@ -18,90 +15,15 @@
     * [1. Install Matrix-Synapse](#1-install-matrix-synapse)
     * [2. Configure Matrix-Synapse](#2-configure-matrix-synapse)
     * [3. Create an admin user](#3-create-an-admin-user)
-    * [4. Securing Federation with SSL](4-securing-federation-with-ssl)
+    * [4. Securing Federation with SSL](#4-securing-federation-with-ssl)
 
 ## 1. Basic server setup
 
-#### 1. Create new user
+It is recommended that you follow this [guide](/ubuntu/initial-server-setup/README.md) on how to setup the a basic Ubuntu server.
 
-* Login to Digital Ocean and create a new droplet; use the one-click app and choose the Docker droplet and make sure you add your SSH key.
+#### 1. Configure firewall
 
-* When it has built, login to the droplet:
-```shell script
-ssh root@droplet_ip
-```
-
-* Add a new user:
-```shell script
-adduser matrix
-```
-
-* Use a strong password and skip the rest of the questions.
-
-* Give the new user root privileges:
-```shell script
-usermod -aG sudo matrix
-```
-
-#### 2. Add SSH public key authentication 
-
-* On your **local machine**, generate an ssh key:
-```shell script
-ssh-keygen
-```
-
-* Using the default ssh key selection, you can output the public key using:
-```shell script
-cat ~/.ssh/id_rsa.pub
-```
-
-* Copy this key.
-
-* Back on the server, switch to the new user:
-```shell script
-su - matrix
-```
-
-* Create a new `.ssh` directory and change the user permissions:
-```shell script
-mkdir ~/.ssh
-chmod 700 ~/.ssh
-```
-
-* Create and open a new file:
-```shell script
-nano ~/.ssh/authorized_keys
-```
-
-* Now insert your public key (which should be in your clipboard) by pasting it into the editor.
-
-* Now restrict the permissions of the `authorized_keys` file with this command:
-```shell script
-chmod 600 ~/.ssh/authorized_keys
-```
-
-#### 3. Disable password authentication
-
-* As your new sudo user, open the SSH daemon configuration:
-```shell script
-sudo nano /etc/ssh/sshd_config
-```
-
-* Ensure the following settings are set:
-```shell script
-PasswordAuthentication no
-PubkeyAuthentication yes
-ChallengeResponseAuthentication no
-```
-
-* Reload the SSH daemon:
-```shell script
-sudo systemctl reload sshd
-```
-
-#### 4. Setup basic firewall for SSH
-
-* We need to make sure that the firewall allows SSH, HTTP/HTTPS and Matrix-Synapse connections. We can allow these connections by typing:
+* We need to make sure that the firewall allows SSH, HTTP/HTTPS (Nginx) and Matrix-Synapse connections. We can allow these connections by typing:
 ```shell script
 sudo ufw allow OpenSSH
 sudo ufw allow "Nginx Full"
