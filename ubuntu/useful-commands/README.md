@@ -4,6 +4,8 @@
 
 * [1. Utility](#1-utility)
     * [1. Create random 64-character alphanumeric string](#1-create-random-64-character-alphanumeric-string)
+* [2. Networking](#2-networking)
+    * [1. Check open ports](#1-check-open-ports)
 
 ## 1. Utility
 
@@ -14,3 +16,10 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 64 | head -n 1
 **NOTE**: You can replace the `64` with any number to create any character length string.
 
 [&#8593; Back to the top](#table-of-contents)
+
+## 2. Networking
+
+#### 1. Check open ports
+```shell script
+netstat -plntu
+```
