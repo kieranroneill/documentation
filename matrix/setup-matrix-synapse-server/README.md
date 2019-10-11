@@ -30,7 +30,12 @@ sudo ufw allow "Nginx Full"
 sudo ufw allow 8448
 ```
 
-* Now, enable the firewall:
+* Reload UFW:
+```shell script
+sudo ufw reload
+```
+
+* If UFW isn’t enabled, enable it:
 ```shell script
 sudo ufw enable
 ```

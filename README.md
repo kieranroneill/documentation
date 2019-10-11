@@ -11,3 +11,5 @@ A collection of documentation that I have accumulated over the years.
 * [Ubuntu](/ubuntu/README.md)
     * [Initial server setup](/ubuntu/initial-server-setup/README.md)
     * [Useful commands](/ubuntu/useful-commands/README.md)
+* [Web](/web/README.md)
+    * [Reverse proxy with Nginx](/web/reverse-proxy-with-nginx/README.md)
